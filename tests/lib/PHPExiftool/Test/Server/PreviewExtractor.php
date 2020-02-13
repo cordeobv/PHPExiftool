@@ -19,7 +19,7 @@ class PreviewExtractor extends AbstractPreviewExtractorTest
 {
     protected $exiftool;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Currently disable server support');
         $this->exiftool = new ExiftoolServer;
@@ -28,7 +28,7 @@ class PreviewExtractor extends AbstractPreviewExtractorTest
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 

@@ -19,7 +19,7 @@ class WriterTest extends AbstractWriterTest
 {
     protected $exiftool;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Currently disable server support');
         $this->exiftool = new ExiftoolServer();
@@ -28,7 +28,7 @@ class WriterTest extends AbstractWriterTest
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 

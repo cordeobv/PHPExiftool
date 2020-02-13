@@ -409,7 +409,7 @@ class Reader implements \IteratorAggregate
     /**
      * Compute raw exclude rules to simple ones, based on exclude dirs and search dirs
      *
-     * @param  string           $rawExcludeDirs
+     * @param  string[]         $rawExcludeDirs
      * @param  string           $rawDirs
      * @return array
      * @throws RuntimeException

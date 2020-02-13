@@ -12,13 +12,15 @@ namespace PHPExiftool\Test;
 
 use Monolog\Logger;
 use Monolog\Handler\NullHandler;
+use PHPExiftool\Exception\RuntimeException;
 use PHPExiftool\Exiftool;
+use PHPUnit\Framework\TestCase;
 
-class ExiftoolTest extends \PHPUnit_Framework_TestCase
+class ExiftoolTest extends TestCase
 {
 
     /**
-     * @covers PHPExiftool\Exiftool::executeCommand
+     * @covers Exiftool::executeCommand
      */
     public function testExecuteCommand()
     {
@@ -27,12 +29,12 @@ class ExiftoolTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\Exiftool::executeCommand
-     * @covers \PHPExiftool\Exception\RuntimeException
-     * @expectedException \PHPExiftool\Exception\RuntimeException
+     * @covers Exiftool::executeCommand
+     * @covers RuntimeException
      */
     public function testExecuteCommandFailed()
     {
+        $this->expectException(RuntimeException::class);
         $exiftool = new Exiftool($this->getlogger());
         $exiftool->executeCommand('-prout');
     }

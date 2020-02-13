@@ -11,8 +11,10 @@
 namespace PHPExiftool\Test\Driver;
 
 use PHPExiftool\Driver\TagFactory;
+use PHPExiftool\Exception\TagUnknown;
+use PHPUnit\Framework\TestCase;
 
-class TagFactoryTest extends \PHPUnit_Framework_TestCase
+class TagFactoryTest extends TestCase
 {
     /**
      * @var TagFactory
@@ -42,10 +44,10 @@ class TagFactoryTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \PHPExiftool\Driver\TagFactory::GetFromRDFTagname
      * @covers \PHPExiftool\Exception\TagUnknown
-     * @expectedException \PHPExiftool\Exception\TagUnknown
      */
     public function testGetFromRDFTagnameFail()
     {
+        $this->expectException(TagUnknown::class);
         TagFactory::getFromRDFTagname('XMPExif:AnunexistingTag');
     }
 

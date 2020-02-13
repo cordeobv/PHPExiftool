@@ -11,22 +11,23 @@
 namespace PHPExiftool\Test\Driver;
 
 use PHPExiftool\Driver\TagProvider;
+use PHPUnit\Framework\TestCase;
 
-class TagProviderTest extends \PHPUnit_Framework_TestCase
+class TagProviderTest extends TestCase
 {
     private $object;
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new TagProvider;
     }
 
     public function testGetAll()
     {
-        $this->assertInternalType('array', $this->object->getAll());
+        $this->assertIsArray($this->object->getAll());
     }
 
     public function testGetLookupTable()
     {
-        $this->assertInternalType('array', $this->object->getLookupTable());
+        $this->assertIsArray($this->object->getLookupTable());
     }
 }

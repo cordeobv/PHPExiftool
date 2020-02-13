@@ -10,41 +10,46 @@
 
 namespace PHPExiftool\Test;
 
+use PHPExiftool\Exception\LogicException;
+use PHPExiftool\Exception\RuntimeException;
 use PHPExiftool\RDFParser;
+use PHPUnit\Framework\TestCase;
 
-class RDFParserTest extends \PHPUnit_Framework_TestCase
+class RDFParserTest extends TestCase
 {
     /**
      * @var RDFParser
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new RDFParser;
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::open
+     * @covers RDFParser::open
      */
     public function testOpen()
     {
+        $this->markTestIncomplete('Nothing asserted');
         $this->object->open(file_get_contents(__DIR__ . '/../../../files/simplefile.xml'));
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::close
+     * @covers RDFParser::close
      */
     public function testClose()
     {
+        $this->markTestIncomplete('Nothing asserted');
         $this->object->close();
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::ParseEntities
-     * @covers PHPExiftool\RDFParser::getDom
-     * @covers PHPExiftool\RDFParser::getDomXpath
-     * @covers PHPExiftool\RDFParser::getNamespacesFromXml
+     * @covers RDFParser::ParseEntities
+     * @covers RDFParser::getDom
+     * @covers RDFParser::getDomXpath
+     * @covers RDFParser::getNamespacesFromXml
      */
     public function testParseEntities()
     {
@@ -58,34 +63,34 @@ class RDFParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::ParseEntities
-     * @covers PHPExiftool\RDFParser::getDom
-     * @covers PHPExiftool\RDFParser::getDomXpath
+     * @covers RDFParser::ParseEntities
+     * @covers RDFParser::getDom
+     * @covers RDFParser::getDomXpath
      * @covers \PHPExiftool\Exception\LogicException
-     * @expectedException \PHPExiftool\Exception\LogicException
      */
     public function testParseEntitiesWithoutDom()
     {
+        $this->expectException(LogicException::class);
         $this->object->parseEntities();
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::ParseEntities
-     * @covers PHPExiftool\RDFParser::getDom
-     * @covers PHPExiftool\RDFParser::getDomXpath
+     * @covers RDFParser::ParseEntities
+     * @covers RDFParser::getDom
+     * @covers RDFParser::getDomXpath
      * @covers \PHPExiftool\Exception\ParseError
      * @covers \PHPExiftool\Exception\RuntimeException
-     * @expectedException \PHPExiftool\Exception\RuntimeException
      */
     public function testParseEntitiesWrongDom()
     {
+        $this->expectException(RuntimeException::class);
         $this->object->open('wrong xml')->parseEntities();
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::ParseMetadatas
-     * @covers PHPExiftool\RDFParser::getDom
-     * @covers PHPExiftool\RDFParser::getDomXpath
+     * @covers RDFParser::ParseMetadatas
+     * @covers RDFParser::getDom
+     * @covers RDFParser::getDomXpath
      */
     public function testParseMetadatas()
     {
@@ -98,8 +103,8 @@ class RDFParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\RDFParser::Query
-     * @covers PHPExiftool\RDFParser::readNodeValue
+     * @covers RDFParser::Query
+     * @covers RDFParser::readNodeValue
      */
     public function testQuery()
     {

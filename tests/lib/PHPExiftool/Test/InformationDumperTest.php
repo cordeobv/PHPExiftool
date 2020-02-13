@@ -12,17 +12,19 @@ namespace PHPExiftool\Test;
 
 use Monolog\Logger;
 use Monolog\Handler\NullHandler;
+use PHPExiftool\Exception\InvalidArgumentException;
 use PHPExiftool\InformationDumper;
 use PHPExiftool\Exiftool;
+use PHPUnit\Framework\TestCase;
 
-class InformationDumperTest extends \PHPUnit_Framework_TestCase
+class InformationDumperTest extends TestCase
 {
     /**
      * @var InformationDumper
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $logger = new Logger('Tests');
         $logger->pushHandler(new NullHandler());
@@ -31,20 +33,21 @@ class InformationDumperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\InformationDumper::listDatas
+     * @covers InformationDumper::listDatas
      */
     public function testListDatas()
     {
+        $this->markTestIncomplete('Nothing asserted');
         $this->object->listDatas();
     }
 
     /**
-     * @covers PHPExiftool\InformationDumper::listDatas
-     * @covers \PHPExiftool\Exception\InvalidArgumentException
-     * @expectedException \PHPExiftool\Exception\InvalidArgumentException
+     * @covers InformationDumper::listDatas
+     * @covers InvalidArgumentException
      */
     public function testListDatasInvalidType()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->object->listDatas('Scrooge');
     }
 }

@@ -12,8 +12,9 @@ namespace PHPExiftool\Test;
 
 use PHPExiftool\FileEntity;
 use PHPExiftool\RDFParser;
+use PHPUnit\Framework\TestCase;
 
-class FileEntityTest extends \PHPUnit_Framework_TestCase
+class FileEntityTest extends TestCase
 {
     /**
      * @var FileEntity
@@ -21,9 +22,9 @@ class FileEntityTest extends \PHPUnit_Framework_TestCase
     protected $object;
 
     /**
-     * @covers PHPExiftool\FileEntity::__construct
+     * @covers FileEntity::__construct
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $dom = new \DOMDocument();
         $dom->loadXML(file_get_contents(__DIR__ . '/../../../files/ExifTool.xml'));
@@ -32,7 +33,7 @@ class FileEntityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\FileEntity::getIterator
+     * @covers FileEntity::getIterator
      */
     public function testGetIterator()
     {
@@ -40,15 +41,15 @@ class FileEntityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\FileEntity::getFile
+     * @covers FileEntity::getFile
      */
     public function testGetFile()
     {
-        $this->assertInternalType('string', $this->object->getFile());
+        $this->assertIsString($this->object->getFile());
     }
 
     /**
-     * @covers PHPExiftool\FileEntity::getMetadatas
+     * @covers FileEntity::getMetadatas
      */
     public function testGetMetadatas()
     {
@@ -57,7 +58,7 @@ class FileEntityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers PHPExiftool\FileEntity::executeQuery
+     * @covers FileEntity::executeQuery
      */
     public function testExecuteQuery()
     {

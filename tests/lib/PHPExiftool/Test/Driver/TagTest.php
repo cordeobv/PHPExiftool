@@ -10,9 +10,11 @@
 
 namespace PHPExiftool\Test\Driver;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
-class TagTest extends \PHPUnit_Framework_TestCase {
+class TagTest extends TestCase
+{
 
     /**
      * @var Tag
@@ -31,17 +33,22 @@ class TagTest extends \PHPUnit_Framework_TestCase {
      * @covers \PHPExiftool\Driver\AbstractTag::isBinary
      */
     public function testConsistency()
-    {return;
+    {
         $finder = new Finder();
         $finder->files()->in(array(__DIR__ . '/../../../../../lib/PHPExiftool/Driver/Tag/'));
 
         foreach ($finder as $file) {
             $classname = substr(
-                    str_replace(
-                            array(realpath(__DIR__ . '/../../../../../lib'), '/')
-                            , array('', '\\')
-                            , $file->getRealPath()
-                    ), 0, -4);
+                str_replace(
+                    array(realpath(__DIR__ . '/../../../../../lib'), '/')
+                    ,
+                    array('', '\\')
+                    ,
+                    $file->getRealPath()
+                ),
+                0,
+                -4
+            );
 
             $tag = new $classname;
 
@@ -53,23 +60,27 @@ class TagTest extends \PHPUnit_Framework_TestCase {
             $this->assertTrue(is_scalar($tag->getTagname()));
             $this->assertTrue(is_scalar($tag->getId()));
 
-            if ($tag->getValues() !== null)
+            if ($tag->getValues() !== null) {
                 $this->assertTrue(is_array($tag->getValues()));
+            }
 
-            if ($tag->isMulti())
+            if ($tag->isMulti()) {
                 $this->assertTrue($tag->isMulti());
-            else
+            } else {
                 $this->assertFalse($tag->isMulti());
+            }
 
-            if ($tag->isWritable())
+            if ($tag->isWritable()) {
                 $this->assertTrue($tag->isWritable());
-            else
+            } else {
                 $this->assertFalse($tag->isWritable(), $tag->getTagname() . " is writable");
+            }
 
-            if ($tag->isBinary())
+            if ($tag->isBinary()) {
                 $this->assertTrue($tag->isBinary());
-            else
+            } else {
                 $this->assertFalse($tag->isBinary());
+            }
 
             $tag->getMaxLength();
 

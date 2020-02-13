@@ -12,8 +12,9 @@ namespace PHPExiftool\Test\Driver\Value;
 
 use PHPExiftool\Driver\Value\Multi;
 use PHPExiftool\Driver\Value\ValueInterface;
+use PHPUnit\Framework\TestCase;
 
-class MultiTest extends \PHPUnit_Framework_TestCase
+class MultiTest extends TestCase
 {
     /**
      * @var Multi
@@ -23,7 +24,7 @@ class MultiTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers PHPExiftool\Driver\Value\Multi::__construct
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new Multi(array('hello', 'world !'));
     }

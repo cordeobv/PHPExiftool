@@ -7,12 +7,11 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="true"
          verbose="false"
          bootstrap="vendor/autoload.php"
 >
     <php>
-      <ini name="display_errors" value="on"/>
+        <ini name="display_errors" value="on"/>
     </php>
 
     <testsuites>
@@ -21,12 +20,14 @@
         </testsuite>
     </testsuites>
     <filter>
-      <blacklist>
-        <directory>vendor</directory>
-        <directory>tests</directory>
-        <directory>lib/PHPExiftool/Driver/Tag/*</directory>
-      </blacklist>
+        <whitelist>
+            <directory>lib</directory>
+            <exclude>
+                <directory>vendor</directory>
+                <directory>tests</directory>
+                <directory>lib/PHPExiftool/Driver/Tag/*</directory>
+            </exclude>
+        </whitelist>
     </filter>
-
 </phpunit>
 

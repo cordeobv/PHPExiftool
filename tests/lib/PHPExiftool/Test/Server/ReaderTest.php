@@ -21,7 +21,7 @@ class ReaderTest extends AbstractReaderTest
 {
     protected $exiftool;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->exiftool = new ExiftoolServer();
         $this->exiftool->start();
@@ -29,7 +29,7 @@ class ReaderTest extends AbstractReaderTest
         parent::setUp();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

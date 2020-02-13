@@ -10,20 +10,22 @@
 
 namespace PHPExiftool\Test;
 
+use PHPExiftool\Exception\RuntimeException;
 use PHPExiftool\ExiftoolServer;
+use PHPUnit\Framework\TestCase;
 
-class ExiftoolServerTest extends \PHPUnit_Framework_TestCase
+class ExiftoolServerTest extends TestCase
 {
     protected $exiftool;
 
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->exiftool = new ExiftoolServer();
         $this->exiftool->start();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->exiftool->stop();
     }
@@ -39,10 +41,10 @@ class ExiftoolServerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers PHPExiftool\ExiftoolServer::executeCommand
      * @covers \PHPExiftool\Exception\RuntimeException
-     * @expectedException \PHPExiftool\Exception\RuntimeException
      */
     public function testExecuteCommandFailed()
     {
+        $this->expectException(RuntimeException::class);
         $this->markTestSkipped('Currently disable server support');
         $this->exiftool->executeCommand('-prout');
     }
